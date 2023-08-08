@@ -1,41 +1,20 @@
 
-import './App.scss';
-import FirstComp from './FirstComp';
-import SecondComp from './SecondComp';
-import Messages from './Messages';
-import {useEffect, useState} from "react"
-import Button from './components/Button';
-import Counter from './components/Counter';
+import './styles/App.scss';
+import Router from './pages/Router';
+import React, { useState }  from 'react';
 
+export const MyThemeContext = React.createContext({theme: "dark"})
+export const MyCountContext = React.createContext()
 
-function App(props) {
-  const left = "50px";
-  const [counter, setCounter] = useState(0);
-
-  const addCount = () => {
-    setCounter((previous) => previous = previous + 1)
-  }
-
-  useEffect(() => {
-    console.log('useEffect')
-  }, [])
-
+const App = () => {
+  const [theme, setTheme] = useState('dark')
+  
   return (
-    <div className="App" style={{ paddingTop : "30px", paddingLeft: left}}>
-      <header className={`App-header ${props.showRed ? "red-header" : "blue-header"}`} >
-        Hello, {props.name}
-        <FirstComp />
-        <SecondComp />
-        <br/>
-
-        <Button addCount={addCount}/>
-        {counter < 2 && <Counter value={counter}/>}
-
-         {/* Условный рендеринг */}
-        {counter < 3 && <Messages msg={counter} />}
-
-       
-      </header>
+    <div className="App">
+      <h2 className="title"> Messenger React</h2>
+      <MyThemeContext.Provider value={{theme, setTheme}}>
+         <Router />
+      </MyThemeContext.Provider>
     </div>
   );
 }

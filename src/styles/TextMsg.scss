@@ -1,0 +1,13 @@
+.msg {
+  font-size: 1.2rem;
+  color: beige;
+}
+.messagesBox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  flex-grow: 1;
+  max-height: 17rem;
+  overflow-y: scroll;
+}

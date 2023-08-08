@@ -1,0 +1,32 @@
+.chatsComp {
+  font-size: 1.5rem;
+  width: 65%;
+  border: 1px solid grey;
+  height: inherit;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 0 1rem;
+}
+
+.Main {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 3rem;
+  flex-grow: 1;
+}
+
+.inputFild {
+  display: flex;
+  margin: 0px auto 3rem;
+  align-items: center;
+  justify-content: center;
+  width: 80%;
+  gap: 2rem;
+}
+
+.ListItem{
+  cursor: pointer;
+}

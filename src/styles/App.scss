@@ -1,0 +1,43 @@
+.App {
+  text-align: center;
+  font-size: 10px;
+  max-width: 44rem;
+  margin: 0 auto;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #282c34;
+}
+
+
+.title {
+  margin: 0 auto;
+  font-size: 2rem;
+  color: beige;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.Text {
+  color: white;
+}
+
+.Messages {
+  color: blue;
+}
+

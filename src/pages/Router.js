@@ -1,0 +1,33 @@
+import { Routes, Route, Link } from "react-router-dom"
+import Home from "./Home"
+import Profile from "./Profile"
+import Chats from "./Chats"
+import NotFound from "./NotFound"
+import "../styles/Router.scss"
+
+const Router = () => {
+  return (
+    <>
+      <ul className="router">
+        <li>
+          <Link to='/'>Home</Link>
+        </li>
+        <li>
+          <Link to='/profile'>Profile </Link>   
+        </li>
+        <li>
+          <Link to='/chats/0'>Chats </Link>   
+        </li>
+      </ul>
+
+      <Routes>
+        <Route path="/" exact element={<Home />}/>
+        <Route path="/profile" element={<Profile />}/>
+        <Route path="/chats/:id" element={<Chats />}/>
+        <Route path="*" element={<NotFound />}/> 
+      </Routes>
+    </>
+  );
+}
+
+export default Router
