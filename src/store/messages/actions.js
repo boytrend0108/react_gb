@@ -9,7 +9,6 @@ export const addMessage = (chatId, message) => ({
 
 
 // ЗДЕСЬ АКTION ЭТО ФУНКЦИЯ- ПОЭТОМУ ИСПОЛЬЗУЕМ THUNK
-
 export const addMessageWithThunk = (chatId, message) => (dispatch, getState) => {
   dispatch(addMessage(chatId, message));
 
