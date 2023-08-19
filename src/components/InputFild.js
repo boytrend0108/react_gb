@@ -4,7 +4,7 @@ import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addMessage, addMessageWithSaga } from "../store/messages/actions";
+import { addMessage, addMessageWithThunk } from "../store/messages/actions";
 
 
 const InputFild = () => {
@@ -19,7 +19,7 @@ const InputFild = () => {
 
   const addMsgToArray = () => {
     if (msg === '') return 
-    dispatch(addMessageWithSaga(id, {text:msg, author: name}))
+    dispatch(addMessageWithThunk(id, {text:msg, author: name}))
     setMessage('')
     InputRef.current.focus()
   }
