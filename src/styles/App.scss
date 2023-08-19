@@ -41,3 +41,12 @@
   color: blue;
 }
 
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.showNameBox {
+  height: 60px;
+}

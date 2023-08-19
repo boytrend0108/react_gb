@@ -8,10 +8,12 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import PersonIcon from '@mui/icons-material/Person';
 import { Link } from 'react-router-dom';
 
-
+ 
 const ChatItem = (props) => {
  
   const id = props.id
+  const name = props.name
+
   const deleteChat = (e) => {
     e.stopPropagation();
     console.log("Delete chat");
@@ -26,15 +28,17 @@ const ChatItem = (props) => {
           <IconButton edge="end" aria-label="delete" onClick={deleteChat}>
             <DeleteIcon />
           </IconButton>
-        }
+        } 
       >
         <ListItemAvatar>
           <Avatar>
             <PersonIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="User Name" />
+        <ListItemText primary={name} />
       </ListItem>
+
+
     </Link>
   );
 }

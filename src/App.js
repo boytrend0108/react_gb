@@ -6,7 +6,7 @@ import React, { useState }  from 'react';
 export const MyThemeContext = React.createContext({theme: "dark"})
 export const MyCountContext = React.createContext()
 
-const App = () => {
+const App = () => { 
   const [theme, setTheme] = useState('dark')
   
   return (

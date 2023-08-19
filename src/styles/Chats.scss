@@ -30,3 +30,20 @@
 .ListItem{
   cursor: pointer;
 }
+
+.chats{
+  border: 1px dashed grey;
+  min-width: 200px;
+  height: 280px;
+  overflow-y: scroll;
+}
+
+.MuiPaper-root {
+  width: 400px;
+  padding: 20px;
+  gap: 10px;
+}
+
+.MuiButton-root {
+  margin-top: 10px;
+}

@@ -8,7 +8,7 @@ const Home = () => {
     context.setTheme(context.theme === "dark" ? "light" : "dark")
   }
 
-  return (
+  return ( 
   <div>Home
     <h2>{context.theme}</h2>
     <button onClick={changeTheme}>Change</button>

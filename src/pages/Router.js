@@ -1,33 +1,36 @@
-import { Routes, Route, Link } from "react-router-dom"
-import Home from "./Home"
-import Profile from "./Profile"
-import Chats from "./Chats"
-import NotFound from "./NotFound"
-import "../styles/Router.scss"
+import { Routes, Route, Link } from "react-router-dom";
+import Home from "./Home";
+import Profile from "./Profile";
+import Chats from "./Chats";
+import NotFound from "./NotFound";
+import "../styles/Router.scss";
 
 const Router = () => {
   return (
     <>
       <ul className="router">
         <li>
-          <Link to='/'>Home</Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to='/profile'>Profile </Link>   
+          <Link to="/profile">Profile </Link>
         </li>
         <li>
-          <Link to='/chats/0'>Chats </Link>   
+          <Link to="/chats/nochat">Chats </Link>
         </li>
       </ul>
 
       <Routes>
-        <Route path="/" exact element={<Home />}/>
-        <Route path="/profile" element={<Profile />}/>
-        <Route path="/chats/:id" element={<Chats />}/>
-        <Route path="*" element={<NotFound />}/> 
+        <Route path="/" exact element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/chats">
+          <Route index element={<Chats />} />
+          <Route path=":id" element={<Chats />} />
+        </Route>
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
-}
+};
 
-export default Router
+export default Router;

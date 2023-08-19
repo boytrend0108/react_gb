@@ -5,7 +5,7 @@ const INITIAL_CHATS = [
       { id: 1, author: "me", text: "First message here" },
       { id: 2, author: "robot", text: "Second message here" },
     ]
-  },
+  }, 
 
   {
     chatId: 2,

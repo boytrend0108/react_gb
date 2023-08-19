@@ -1,20 +1,26 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
+import { useSelector, useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
+import { addMessage, addMessageWithThunk } from "../store/messages/actions";
 
 
+const InputFild = () => {
+  const InputRef = useRef(0) // получаем елемент
+  const {id} = useParams()
+  const name = useSelector(state => state.profile.name)
+  const messages = useSelector(state => state.messages.messagesList[id])
 
-const InputFild = (props) => {
-  const InputRef = useRef(0)
-  
+  const dispatch = useDispatch()
   let [msg, setMessage] = useState("");
-  let [msgCounter, setMsgCounter] = useState(1)
-  const {addMsg} = props
+
 
   const addMsgToArray = () => {
-    addMsg({id: msgCounter, author: "me", text: msg})
-    setMsgCounter(oldValue => oldValue + 1)
+    if (msg === '') return 
+    // dispatch(addMessage(id, {text:msg, author: name}))
+    dispatch(addMessageWithThunk(id, {text:msg, author: name}))
     setMessage('')
     InputRef.current.focus()
   }
@@ -22,6 +28,13 @@ const InputFild = (props) => {
   const setInputValue = (event) => {
     setMessage(event.target.value)
   }
+
+  useEffect(()=> {
+    if (!messages || !messages.length) return
+    if (messages[messages.length - 1].author !== 'robot') {
+      setTimeout(() =>  dispatch(addMessage(id, {text:"I'm bot", author: 'robot'})), 1000)
+    }
+ }, [messages])
 
   return (
     <div className="inputFild">
