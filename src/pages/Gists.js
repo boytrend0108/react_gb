@@ -7,21 +7,20 @@
   const [error, setError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const requestGists = () => {
+  const requestGists = async () => {
     setIsLoading(true)
     
-    fetch(API_URL_PUBLIC)
-    .then(res => {
-      if (!res.ok) {
-        throw new Error(`Request failed with status ${res.status}!`)
-      }
-     return res.json()})
-    .then(result => setGists(result))
-    .catch(err => {
+    try{
+      const response = await fetch(API_URL_PUBLIC);
+      if (!response.ok) throw new Error(`Request failed with status ${response.status}!`);
+      const result = await response.json();
+      setGists(result);
+    }
+    catch(err) {
       setError(true);
-      console.log(err)
-    })
-    .finally(() => setIsLoading(false))
+      console.log(err);
+    }
+    finally {setIsLoading(false)} 
   }
 
   useEffect(() => {
