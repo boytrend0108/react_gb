@@ -1,9 +1,13 @@
-import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+import { createStore, combineReducers,  applyMiddleware } from 'redux';
+
 import profileReduser from "./profile/reduser";
 import messagesReduser from './messages/reduser';
 import chatsReduser from './chats/reduser';
-// import middleware from '../middleware/middleware';
-import thunk from "redux-thunk"
+import mySaga from "./sagas"
+
+//redux-saga
+import createSagaMiddleware from "redux-saga";
+const sagaMiddleware = createSagaMiddleware();
 
 // Объединяем все редюсеры 
 const redusers = combineReducers({
@@ -12,10 +16,10 @@ const redusers = combineReducers({
   messages: messagesReduser
 })
 
-const composeEnhancer =  window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
-
 const store = createStore(
   redusers, // redusers или один редюсер без сombineREd..
-  composeEnhancer(applyMiddleware(thunk))
+  applyMiddleware(sagaMiddleware)
   );
 export default store;
+
+sagaMiddleware.run(mySaga);
