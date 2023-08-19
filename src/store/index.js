@@ -1,12 +1,12 @@
 import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
+
+// наши редюсеры
 import profileReduser from "./profile/reduser";
 import messagesReduser from './messages/reduser';
 import chatsReduser from './chats/reduser';
 
 // подключаем миддлвару
 import middleware from '../middleware/middleware';
-
-
 
 // Объединяем все редюсеры 
 const redusers = combineReducers({

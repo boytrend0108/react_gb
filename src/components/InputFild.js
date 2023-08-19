@@ -16,12 +16,11 @@ const InputFild = () => {
   const dispatch = useDispatch()
   let [msg, setMessage] = useState("");
 
-
   const addMsgToArray = () => {
     if (msg === '') return 
     dispatch(addMessage(id, {text:msg, author: name}))
     setMessage('')
-    InputRef.current.focus()
+    InputRef.current.focus();
   }
 
   const setInputValue = (event) => {
