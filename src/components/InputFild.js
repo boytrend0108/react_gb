@@ -17,9 +17,8 @@ const InputFild = () => {
   let [msg, setMessage] = useState("");
 
 
-  const addMsgToArray = () => {
+  const addMsgToArray = () => { 
     if (msg === '') return 
-    // dispatch(addMessage(id, {text:msg, author: name}))
     dispatch(addMessageWithThunk(id, {text:msg, author: name}))
     setMessage('')
     InputRef.current.focus()

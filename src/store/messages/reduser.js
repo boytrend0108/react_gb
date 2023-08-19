@@ -4,7 +4,7 @@ const initialState = {
   messagesList: {}
 }
 /**
- * {
+ * { 
  *   chatId1: [{id, text, author}, {id, text, author}]
  *   chatId2: [{id, text, author}, {id, text, author}, {id, text, author}]
  * }

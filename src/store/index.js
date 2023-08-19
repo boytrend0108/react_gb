@@ -2,7 +2,7 @@ import { createStore, combineReducers, compose, applyMiddleware } from 'redux';
 import profileReduser from "./profile/reduser";
 import messagesReduser from './messages/reduser';
 import chatsReduser from './chats/reduser';
-// import middleware from '../middleware/middleware';
+
 import thunk from "redux-thunk"
 
 // Объединяем все редюсеры 
