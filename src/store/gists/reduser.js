@@ -29,7 +29,8 @@ const gistsReduser = (state = initialState, action) => {
         ...state, 
         request: STATUSES.SUCCESS,
         gists: action.payload,
-        loading:false
+        loading:false, 
+        error: null
       }
 
     case GET_GISTS_ERROR:
@@ -37,7 +38,8 @@ const gistsReduser = (state = initialState, action) => {
         ...state, 
         request: STATUSES.FAILURE,
         error: action.payload,
-        loading:false
+        loading:false,
+        gists: []
       }
 
     default: return state

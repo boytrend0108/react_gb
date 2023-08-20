@@ -28,7 +28,7 @@ export const getAllGists = () => async (dispatch) => {
     const result = await respons.json();
     dispatch(getGistsSuccess(result));
   } catch (err) {
-    dispatch(getGistsSuccess(err.message));
+    dispatch(getGistsError(err.message));
     console.log(err);
   }
 };
