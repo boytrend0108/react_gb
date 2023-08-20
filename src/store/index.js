@@ -3,6 +3,7 @@ import { createStore, combineReducers,  applyMiddleware, compose } from 'redux';
 import profileReduser from "./profile/reduser";
 import messagesReduser from './messages/reduser';
 import chatsReduser from './chats/reduser';
+import gistsReduser from "./gists/reduser"
 
 import thunk from "redux-thunk";
 
@@ -21,7 +22,8 @@ const persistConfig = {
 const redusers = combineReducers({
   profile: profileReduser,
   chats: chatsReduser,
-  messages: messagesReduser
+  messages: messagesReduser,
+  gists: gistsReduser
 })
 
 const persistedReduser = persistReducer(persistConfig, redusers)

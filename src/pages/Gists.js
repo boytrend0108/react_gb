@@ -1,57 +1,55 @@
-import { useState, useEffect, useCallback } from "react";
-import { API_URL_PUBLIC } from "../constants/gists";
-import { CircularProgress } from "@mui/material";
-import axios from "axios"
+// import { useEffect, useCallback } from "react";
+// import { CircularProgress } from "@mui/material";
+// import { useSelector, useDispatch } from "react-redux";
+// import {
+//   selectGists,
+//   selectGistsError,
+//   selectGistsLoading,
+// } from "../store/gists/selectors";
+// import { getAllGists } from "../store/gists/actions";
 
-const Gists = () => {
-  const [gists, setGists] = useState([]);
-  const [error, setError] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+// const Gists = () => {
+//   const dispatch = useDispatch();
+//   const gists = useSelector(selectGists);
+//   console.log(gists)
+//   const error = useSelector(selectGistsError);
+//   const isLoading = useSelector(selectGistsLoading);
 
-  const requestGists = async () => {
-    setIsLoading(true);
+//   const requestGists = useCallback(() => {
+//     dispatch(getAllGists());
+//   }, []);
 
-    try{
-      const respons = await axios(API_URL_PUBLIC);
-      setGists(respons.data)
-    }catch(err) {
-      setError(true)
-      console.log(err)
-    }finally{
-      setIsLoading(false)
-    }
+//   useEffect(() => {
+//     console.log("useEffect");
+//     requestGists();
+//   }, []);
 
-  };
+//   const renderGists = useCallback(
+//     (gist) => <li key={gist.id}>{gist.description || "no description"}</li>,
+//     []
+//   );
 
-  useEffect(() => {
-    requestGists();
-  }, []);
+//   // render===========
+//   if (isLoading) {
+//     return <CircularProgress />;
+//   }
 
-  const renderGists = useCallback(
-    (gist) => <li key={gist.id}>{gist.description || "no description"}</li>,
-    []
-  );
+//   if (error) {
+//     return (
+//       <>
+//         <p>Error</p>
+//         <button onClick={requestGists}>Retry</button>
+//       </>
+//     );
+//   }
 
-// render===========
-  if (isLoading) {
-    return <CircularProgress />;
-  }
+//   return (
+//     <ul>
+//       {/* {gists.map(gist => <li key={gist.id}>{gist.description || 'no description'}</li>)} */}
+//       {gists.map(renderGists)}
+//       <li>555</li>
+//     </ul>
+//   );
+// };
 
-  if (error) {
-    return (
-      <>
-        <p>Error</p>
-        <button onClick={requestGists}>Retry</button>
-      </>
-    );
-  }
-
-  return (
-    <ul>
-      {/* {gists.map(gist => <li key={gist.id}>{gist.description || 'no description'}</li>)} */}
-      {gists.map(renderGists)}
-    </ul>
-  );
-};
-
-export default Gists;
+// export default Gists;
