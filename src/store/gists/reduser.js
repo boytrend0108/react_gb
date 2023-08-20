@@ -17,6 +17,7 @@ const initialState = {
 const gistsReduser = (state = initialState, action) => {
   switch(action.type) {
     case GET_GISTS_REQUEST: 
+    console.log('GET_GISTS_REQUEST')
       return {
         ...state,
         request: STATUSES.REQUEST, 

@@ -11,7 +11,8 @@ import thunk from "redux-thunk";
 import { persistStore, persistReducer} from 'redux-persist'
 import storage from 'redux-persist/lib/storage';
 
-const composeEnhanser = window.__REDUX_DEVTOOLS_EXTENTION_COMPOSE__ || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
 
 const persistConfig = {
   key: 'root',
@@ -30,7 +31,7 @@ const persistedReduser = persistReducer(persistConfig, redusers)
 
 export const store = createStore(
   persistedReduser, // redusers или один редюсер без сombineREd..
-  composeEnhanser(applyMiddleware(thunk))
+  composeEnhancers(applyMiddleware(thunk))
   );
 
  const persistor = persistStore(store);
