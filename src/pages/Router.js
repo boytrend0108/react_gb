@@ -22,6 +22,12 @@ const Router = () => {
         <li>
           <Link to="/gists">Gists</Link>
         </li>
+        <li>
+          <Link to="/chats/nochat">Login</Link>
+        </li>
+        <li>
+          <Link to="/gists">Registration</Link>
+        </li>
       </ul>
 
       <Routes>
