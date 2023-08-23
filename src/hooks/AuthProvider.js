@@ -1,16 +1,16 @@
 import React from "react";
 import { useState } from "react";
-import firebase from "../services/firebaseConfig";
-import {getAuth, singinWithEmailAndPassword, singOut, onAuthStateChanged} from "firebase/auth"
+import firebaseConfig from "../services/firebaseConfig";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "firebase/auth"
 
 const AuthContext = React.createContext(null);
 
-export function AuthProvider({children}){
+export function AuthProvider({children}) {
   const [user, setUser] = useState();
 
-  let singin = async (newUser, callback) => {
-    const auth = getAuth(firebase);
-    await singinWithEmailAndPassword(auth, newUser.email, newUser.password);
+  let sigпin = async (newUser, callback) => {
+    const auth = getAuth(firebaseConfig);
+    await signInWithEmailAndPassword(auth, newUser.email, newUser.password);
     await onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
@@ -19,16 +19,17 @@ export function AuthProvider({children}){
     callback();
   }
 
-  let singout = async (callback) => {
-    const auth = getAuth(firebase);
-    await singOut(auth);
+  let signout = async (callback) => {
+    const auth = getAuth(firebaseConfig);
+    await signOut(auth);
     setUser(null);
     callback(); // вызываем коллбэк если он есть
   }
 
-  let value = {user, singin, singout};
+  let value = {user, sigпin, signout};
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={value}> { children } </AuthContext.Provider>;
+  
 }
 
 const useAuth = () => {

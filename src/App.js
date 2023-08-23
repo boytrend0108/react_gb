@@ -2,9 +2,10 @@
 import './styles/App.scss';
 import Router from './pages/Router';
 import React, { useState }  from 'react';
+import { AuthProvider } from "./hooks/AuthProvider"
 
 export const MyThemeContext = React.createContext({theme: "dark"})
-export const MyCountContext = React.createContext()
+export const MyCountContext = React.createContext();
 
 const App = () => { 
   const [theme, setTheme] = useState('dark')
@@ -13,7 +14,9 @@ const App = () => {
     <div className="App">
       <h2 className="title"> Messenger React</h2>
       <MyThemeContext.Provider value={{theme, setTheme}}>
-         <Router />
+        <AuthProvider> 
+          <Router />
+        </AuthProvider>
       </MyThemeContext.Provider>
     </div>
   );
