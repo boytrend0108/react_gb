@@ -2,8 +2,9 @@
 import ChatItem from './ChatItem';
 import '../styles/Chats.scss'
 import { Button, Dialog, DialogTitle, TextField } from '@mui/material';
-import {useState} from 'react'
-import {addChat} from '../store/chats/actions'
+import {useEffect, useState} from 'react'
+import { useParams } from 'react-router-dom';
+import { addChatWithFB, initTrackerWithFB } from '../middleware/middleware'
 
 const Chats = () => {
 
@@ -11,15 +12,21 @@ const chats = useSelector(state => state.chats.chatList);
 const [visible, setVisible] = useState(false);
 const [chatName, setChatName] = useState('');
 const dispatch = useDispatch();
+const {chatId} = useParams();
 
 const closeDialog = () => setVisible(false);
 const openDialog = () => setVisible(true);
 const handleChatName  = e => setChatName(e.target.value);
+
 const handleSave = () => {
-  dispatch(addChat(chatName))
+  dispatch(addChatWithFB(chatName))
   closeDialog();
   setChatName('')
 }
+
+useEffect(() => {
+  dispatch(initTrackerWithFB());
+}, [chatId])
 
   return ( 
     <div className="chats">

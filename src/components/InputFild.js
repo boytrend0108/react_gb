@@ -13,7 +13,7 @@ const InputFild = () => {
   const name = useSelector(state => state.profile.name)
   const messages = useSelector(state => state.messages.messagesList[id])
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   let [msg, setMessage] = useState("");
 
 
