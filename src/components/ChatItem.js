@@ -19,7 +19,7 @@ const ChatItem = (props) => {
   const name = props.name
 
   const deleteChat = (id) => {
-    dispatch(deleteChatWithFB(id));
+   dispatch(deleteChatWithFB(id));
   }
 
 
@@ -40,8 +40,6 @@ const ChatItem = (props) => {
         </ListItemAvatar>
         <ListItemText primary={name} />
       </ListItem>
-
-
     </Link>
   );
 }

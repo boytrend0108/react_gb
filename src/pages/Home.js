@@ -3,7 +3,6 @@ import { useContext } from "react"
 
 const Home = () => {
   const context = useContext(MyThemeContext);
-  
   const changeTheme = () => {
     context.setTheme(context.theme === "dark" ? "light" : "dark")
   }

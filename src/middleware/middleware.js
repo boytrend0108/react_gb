@@ -16,19 +16,22 @@ const middleware = (store) => (next) => (action) => {
 // ========== FireBase ===========
 
  export const initTrackerWithFB = () => async (dispatch) => {
+  console.log('initTrackerWithFB')
   const db = getDatabase(firebaseConfig); // достам базу
   const chatRef = ref(db, "/chats");  // полключаемся к чатам
 
   onValue(chatRef, snapshot => { // следим за изменениями в базе 
-    const data = snapshot.val();
-    if (!data) return;
-    const chatIds = Object.keys(data); 
-    const chatArr = chatIds.map(item => ({ // cоздаем массив для отображения на сайте
-      id: item,
-      name: data[item].name
-    }));
-
-    dispatch(chatListUpdate(chatArr));
+    const data = snapshot.val(); // при изменениях в базе забираем данные 
+    let chatArr = [];
+    if (data) {
+      const chatIds = Object.keys(data); 
+      chatArr = chatIds.map(item => ({ // cоздаем массив для отображения на сайте
+        id: item,
+        name: data[item].name
+      }));
+    }
+  
+    dispatch(chatListUpdate(chatArr)); // имненяем данные в приложении
   })
 };
 
@@ -51,7 +54,7 @@ export const deleteChatWithFB = (id) => async () => {
   remove(messagesRef).then(res => {
     console.log('Messages deleted', res)
   })
-}
+} 
 
 
 export default middleware;

@@ -32,9 +32,9 @@ const Login = () => {
         setTimeout(() =>  navigate(from, { replace: true }), 2000);
       })
     } catch (err) {
-      toast.error("Ошибка!!!")
+      toast.error("Ошибка!!!");
       setError('');
-      console.log(err)
+      console.log(err);
     }
   };
 

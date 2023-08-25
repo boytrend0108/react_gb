@@ -19,20 +19,20 @@ const openDialog = () => setVisible(true);
 const handleChatName  = e => setChatName(e.target.value);
 
 const handleSave = () => {
-  dispatch(addChatWithFB(chatName))
+  dispatch(addChatWithFB(chatName)) // dispatchim акшн из middleware.js
   closeDialog();
   setChatName('')
 }
 
 useEffect(() => {
-  dispatch(initTrackerWithFB());
-}, [chatId])
+  dispatch(initTrackerWithFB()); // при изменении chatId обновляем дaнні 
+}, [chatId]) 
 
   return ( 
     <div className="chats">
       Chats
       {chats.length > 0 
-        ? chats.map((chat, i) => <ChatItem key={i} id={i} name={chat.name}/>) 
+        ? chats.map((chat, i) => <ChatItem key={i} id={chat.id} name={chat.name}/>) 
         : <div>No Chats Yet</div>
       } 
 

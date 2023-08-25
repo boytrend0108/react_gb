@@ -8,11 +8,11 @@ import { useSelector } from "react-redux"
 const Chats = () => {
   const { id } = useParams(); // получае id из роута
   const messages = useSelector((state) => state.messages.messagesList[id] || []);
-  const chats = useSelector(state => state.chats.chatList)
+  const chats = useSelector(state => state.chats.chatList);
 
   return (
     <div className="chatsComp">
-      <h2>Chats</h2>
+      <h2>{chats[id]?.name || 'Select chat' }</h2>
       <main className="Main">
         <ChatsComp />
         <div className="messagesBox">
@@ -22,7 +22,7 @@ const Chats = () => {
               <TextMsg msg={el} key={i} />
             ))}
         </div>
-      </main>
+      </main> 
 
       <InputFild />
     </div>

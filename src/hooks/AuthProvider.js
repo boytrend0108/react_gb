@@ -21,7 +21,7 @@ export function AuthProvider({children}) {
 
   let signout = async (callback) => {
     const auth = getAuth(firebaseConfig);
-    await signOut(auth);
+    await signOut(auth); 
     setUser(null);
     callback(); // вызываем коллбэк если он есть
   }
