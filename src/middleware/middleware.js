@@ -1,7 +1,8 @@
 import firebaseConfig from "../services/firebaseConfig";
-import { getDatabase, ref, push, onValue , set, remove} from "firebase/database";
-import { ADD_MESSAGE, addMessage } from "../store/messages/actions";
+import { getDatabase, ref, push, onValue , set, remove } from "firebase/database";
+import { ADD_MESSAGE, addMessage, updateMessages } from "../store/messages/actions";
 import { chatListUpdate } from '../store/chats/actions'
+
 
 /* eslint-disable no-unused-vars */
 const middleware = (store) => (next) => (action) => {
@@ -16,7 +17,6 @@ const middleware = (store) => (next) => (action) => {
 // ========== FireBase ===========
 
  export const initTrackerWithFB = () => async (dispatch) => {
-  console.log('initTrackerWithFB')
   const db = getDatabase(firebaseConfig); // достам базу
   const chatRef = ref(db, "/chats");  // полключаемся к чатам
 
@@ -53,8 +53,34 @@ export const deleteChatWithFB = (id) => async () => {
   });
   remove(messagesRef).then(res => {
     console.log('Messages deleted', res)
+  });
+};
+
+export const addMessageWithFB = (chatId, message) => async() => {
+  const db = getDatabase(firebaseConfig);
+  const messageRef = ref(db, `/messages/${chatId}`);
+  const newMessageRef = push(messageRef);
+  set(newMessageRef, message).then(res => {
+    console.log('message added', res);
   })
-} 
+};
+
+export const getMessagesByIdWithFB = (chatId) => async (dispatch) => {
+  const db = getDatabase(firebaseConfig);
+  const messagesRef = ref(db, `/messages/${chatId}`);
+
+  onValue(messagesRef, snapshot => {
+    const data = snapshot.val();
+    const messages = data && Object.values(data);
+
+    if (messages?.length > 0) {
+      dispatch(updateMessages(chatId, messages));
+    }
+
+  });
+
+}
+
 
 
 export default middleware;

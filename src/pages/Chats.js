@@ -1,14 +1,22 @@
-import TextMsg from "../components/TextMsg"
-import InputFild from "../components/InputFild"
-import ChatsComp from "../components/ChatsComp"
-import { useParams } from "react-router-dom"
-import { useSelector } from "react-redux"
+import TextMsg from "../components/TextMsg";
+import InputFild from "../components/InputFild";
+import ChatsComp from "../components/ChatsComp";
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { getMessagesByIdWithFB } from '../middleware/middleware';
 
 
 const Chats = () => {
   const { id } = useParams(); // получае id из роута
   const messages = useSelector((state) => state.messages.messagesList[id] || []);
   const chats = useSelector(state => state.chats.chatList);
+  const dispatch = useDispatch();
+
+// при изменении chatId подгружаем из FB cообщения.
+  useEffect(() => {
+    dispatch(getMessagesByIdWithFB(id))
+  }, [id]);
 
   return (
     <div className="chatsComp">

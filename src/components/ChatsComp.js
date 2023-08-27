@@ -3,7 +3,7 @@ import ChatItem from './ChatItem';
 import '../styles/Chats.scss'
 import { Button, Dialog, DialogTitle, TextField } from '@mui/material';
 import {useEffect, useState} from 'react'
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { addChatWithFB, initTrackerWithFB } from '../middleware/middleware'
 
 const Chats = () => {
@@ -13,6 +13,8 @@ const [visible, setVisible] = useState(false);
 const [chatName, setChatName] = useState('');
 const dispatch = useDispatch();
 const {chatId} = useParams();
+const location  = useLocation();
+console.log(location)
 
 const closeDialog = () => setVisible(false);
 const openDialog = () => setVisible(true);
@@ -21,11 +23,11 @@ const handleChatName  = e => setChatName(e.target.value);
 const handleSave = () => {
   dispatch(addChatWithFB(chatName)) // dispatchim акшн из middleware.js
   closeDialog();
-  setChatName('')
+  setChatName('');
 }
 
-useEffect(() => {
-  dispatch(initTrackerWithFB()); // при изменении chatId обновляем дaнні 
+ useEffect(() => {
+   dispatch(initTrackerWithFB()); // при изменении chatId обновляем дaнні 
 }, [chatId]) 
 
   return ( 

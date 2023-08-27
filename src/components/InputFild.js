@@ -4,13 +4,13 @@ import Fab from '@mui/material/Fab';
 import SendIcon from '@mui/icons-material/Send';
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { addMessage, addMessageWithThunk } from "../store/messages/actions";
+import { addMessageWithFB } from '../middleware/middleware'
 
 
 const InputFild = () => {
   const InputRef = useRef(0) // получаем елемент
-  const {id} = useParams()
-  const name = useSelector(state => state.profile.name)
+  const {id} = useParams();
+  const name = useSelector(state => state.profile.name);
   const messages = useSelector(state => state.messages.messagesList[id])
 
   const dispatch = useDispatch();
@@ -18,8 +18,8 @@ const InputFild = () => {
 
 
   const addMsgToArray = () => {
-    if (msg === '') return 
-    dispatch(addMessageWithThunk(id, {text:msg, author: name}))
+    if (msg === '') return;
+    dispatch(addMessageWithFB(id, {text:msg, author: name}))
     setMessage('')
     InputRef.current.focus()
   }
@@ -31,7 +31,7 @@ const InputFild = () => {
   useEffect(()=> {
     if (!messages || !messages.length) return
     if (messages[messages.length - 1].author !== 'robot') {
-      setTimeout(() =>  dispatch(addMessage(id, {text:"I'm bot", author: 'robot'})), 1000)
+      setTimeout(() =>  dispatch(addMessageWithFB(id, {text:"I'm bot", author: 'robot'})), 1000)
     }
  }, [messages])
 
